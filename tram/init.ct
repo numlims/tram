@@ -103,7 +103,7 @@ idc to its code.
         if id is not None:
             if ids is not None:
                 raise Exception("Idable doesn't accept a list of ids if a single id is passed.")
-            if mainidc is none:
+            if mainidc is None:
                 self.mainidc = code
             self.ids.append(Identifier(id=id, code=code))
 ``

@@ -36,7 +36,7 @@ class Idable:
         if id is not None:
             if ids is not None:
                 raise Exception("Idable doesn't accept a list of ids if a single id is passed.")
-            if mainidc is none:
+            if mainidc is None:
                 self.mainidc = code
             self.ids.append(Identifier(id=id, code=code))
     def identifier(self, code:str=None) -> Identifier:
@@ -115,8 +115,7 @@ class Sample(Idable):
     type:str=None
     xposition:int=None
     yposition:int=None
-    def __init__(
-         self,
+    def __init__(self,
          appointment:str=None,
          category:str=None,
          cxxkitid:str=None,
