@@ -1,3 +1,3 @@
-# trala
+# tram
 
-types for centraxx samples, patients and else
+models for centraxx samples, patients, findings and else

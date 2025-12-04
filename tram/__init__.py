@@ -1,5 +1,7 @@
 # automatically generated, DON'T EDIT. please edit init.ct from where this file stems.
 
+from datetime import datetime
+
 class Identifier:
     def __init__(self, id=None, code:str=None):
         """

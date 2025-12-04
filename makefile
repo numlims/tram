@@ -1,7 +1,7 @@
 # name
-name = trafo
+name = tram
 
-docdir = ~/numlims.github.io/trafo  # e.g. ~/mydoc.github.io/myprogram
+docdir = ~/numlims.github.io/tram  # e.g. ~/mydoc.github.io/myprogram
 docmake = ~/numlims.github.io  # e.g. ~/mydoc.github.io
 
 # get the version from github tag
@@ -9,7 +9,7 @@ docmake = ~/numlims.github.io  # e.g. ~/mydoc.github.io
 version = $(shell git tag | sort -V | tail -1 | tr -d v)
 
 all:
-	ct trafo/init.ct
+	ct tram/init.ct
 
 .PHONY: build install test doc doc-publish publish publish-update
 
