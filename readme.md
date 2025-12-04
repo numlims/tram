@@ -3,7 +3,7 @@
 models for centraxx samples, patients, findings and else.
 
 ```
-from tram import Sample, Identifier
+from tram import Sample, Identifier, Amount
 sample = Sample(
   sampleid=Identifier(id="sample1", code="SAMPLEID"),
   type="EDTA",
