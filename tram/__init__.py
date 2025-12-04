@@ -5,14 +5,14 @@ from datetime import datetime
 class Identifier:
     def __init__(self, id=None, code:str=None):
         """
-         __init__ initializes an identifier.
+         __init__ initializes an identifier with id and code.
         """
         self.id = id
         self.code = code
 class Amount:
     def __init__(self, value:float=None, unit:str=None):
         """
-         __init__ initializes an amount.
+         __init__ initializes an amount with value and unit.
         """
         self.value = value
         self.unit = unit
@@ -25,13 +25,19 @@ class Idable:
     def __init__(self, ids:list=None, mainidc:str=None, id=None, code:str=None):
         """
          __init__ initializes an Idable from a list of Identifiers and a
-         mainidc string.
+         mainidc code. instead of passing a list of ids you can pass a single
+         id with code. in that case, that code becomes the main idc if no other
+         main idc is passed.
         """
         self.ids = ids
         if self.ids is None:
             self.ids = []
         self.mainidc = mainidc
         if id is not None:
+            if ids is not None:
+                raise Exception("Idable doesn't accept a list of ids if a single id is passed.")
+            if mainidc is none:
+                self.mainidc = code
             self.ids.append(Identifier(id=id, code=code))
     def identifier(self, code:str=None) -> Identifier:
         """
@@ -117,7 +123,7 @@ class Sample(Idable):
          concentration=None, # str?
          derivaldate:datetime=None,
          first_repositiondate:datetime=None,
-         ids:list=None, # of Identifier         
+         ids:Idable=None, 
          initialamount:Amount=None,
          kitid:str=None,
          locationpath:str=None,
@@ -135,13 +141,12 @@ class Sample(Idable):
          stockprocessingdate:datetime=None,         
          receiptdate:datetime=None,         
          repositiondate:datetime=None,
-         sidc:str=None,
          trial:str=None,
          type:str=None,
          xposition:int=None, 
          yposition:int=None
          ):
-        Idable.__init__(self, ids, sidc)
+        Idable.__init__(self, ids.ids, ids.mainidc)
         self.appointment = appointment
         self.category = category
         self.cxxkitid = cxxkitid
@@ -187,24 +192,23 @@ class Sample(Idable):
          patientid in root level, for quicker access.
         """
         state = self.__dict__.copy() # is this slow?
-        state[sampleid] = self.id()
-        state[patientid] = self.patient.id() if self.patient else None
+        state["sampleid"] = self.id()
+        state["patientid"] = self.patient.id() if self.patient else None
         return state
 class Patient(Idable):
     def __init__(
       self,
-      ids:list=None,
-      orga:str=None,
-      pidc:str=None
+      ids:Idable=None,
+      orga:str=None
     ):
-        Idable.__init__(self, ids, pidc)
+        Idable.__init__(self, ids.ids, ids.mainidc)
         self.orga = orga
     def __getstate__(self):
         """
          __getstate__ returns what gets jsonpickled. include the patientid at the root level, for quicker access.
         """
         state = self.__dict__.copy() # is this slow?
-        state[patientid] = self.id()
+        state["patientid"] = self.id()
         return state
 class Finding:
     method:str=None

@@ -27,7 +27,7 @@ class Identifier:
     ``init``
 ``
 
-__init__ initializes an identifier.
+__init__ initializes an identifier with id and code.
 
 ``/identifier class/init:
     def __init__(self, id=None, code:str=None):
@@ -49,7 +49,7 @@ class Amount:
     ``__str__``
 ``
 
-__init__ initializes an amount.
+__init__ initializes an amount with value and unit.
 
 ``/amount class/init:
     def __init__(self, value:float=None, unit:str=None):
@@ -84,7 +84,9 @@ class Idable:
 ``
 
 __init__ initializes an Idable from a list of Identifiers and a
-mainidc string.
+mainidc code. instead of passing a list of ids you can pass a single
+id with code. in that case, that code becomes the main idc if no other
+main idc is passed.
 
 ``/idable class/init:
     def __init__(self, ids:list=None, mainidc:str=None, id=None, code:str=None):
@@ -94,10 +96,15 @@ mainidc string.
         self.mainidc = mainidc
 ``
 
-id and code give a shortcut for creating a list.
+if an id string is given take it instead of the list and set the main
+idc to its code.
 
 ``
         if id is not None:
+            if ids is not None:
+                raise Exception("Idable doesn't accept a list of ids if a single id is passed.")
+            if mainidc is none:
+                self.mainidc = code
             self.ids.append(Identifier(id=id, code=code))
 ``
 
@@ -397,7 +404,8 @@ import.
 from datetime import datetime
 ``
 
-__init__ initializes a sample.
+__init__ initializes a Sample with ids, patient and parentsample reference and a
+range of values.
 
 ``/sample class/init:
     def __init__(
@@ -408,7 +416,7 @@ __init__ initializes a sample.
          concentration=None, # str?
          derivaldate:datetime=None,
          first_repositiondate:datetime=None,
-         ids:list=None, # of Identifier         
+         ids:Idable=None, 
          initialamount:Amount=None,
          kitid:str=None,
          locationpath:str=None,
@@ -426,7 +434,6 @@ __init__ initializes a sample.
          stockprocessingdate:datetime=None,         
          receiptdate:datetime=None,         
          repositiondate:datetime=None,
-         sidc:str=None,
          trial:str=None,
          type:str=None,
          xposition:int=None, 
@@ -438,7 +445,7 @@ __init__ initializes a sample.
 call super.
 
 ``
-        Idable.__init__(self, ids, sidc)
+        Idable.__init__(self, ids.ids, ids.mainidc)
 ``
 
 fill in the parameters.
@@ -495,8 +502,8 @@ patientid in root level, for quicker access.
 ``/sample class/__getstate__:
     def __getstate__(self):
         state = self.__dict__.copy() # is this slow?
-        state[sampleid] = self.id()
-        state[patientid] = self.patient.id() if self.patient else None
+        state["sampleid"] = self.id()
+        state["patientid"] = self.patient.id() if self.patient else None
         return state
 ``
 
@@ -509,14 +516,13 @@ class Patient(Idable):
     ``__getstate__``
 ``
 
-__init__ initializes a patient.
+__init__ initializes a patient with ids and orga.
 
 ``/patient class/init:
     def __init__(
       self,
-      ids:list=None,
-      orga:str=None,
-      pidc:str=None
+      ids:Idable=None,
+      orga:str=None
     ):
         ``.``
 ``
@@ -524,7 +530,7 @@ __init__ initializes a patient.
 call super.
 
 ``
-        Idable.__init__(self, ids, pidc)
+        Idable.__init__(self, ids.ids, ids.mainidc)
 ``
 
 
@@ -539,7 +545,7 @@ __getstate__ returns what gets jsonpickled. include the patientid at the root le
 ``/patient class/__getstate__:
     def __getstate__(self):
         state = self.__dict__.copy() # is this slow?
-        state[patientid] = self.id()
+        state["patientid"] = self.id()
         return state
 ``
 
@@ -592,7 +598,8 @@ sender holds the sender.
     sender:str=None
 ``
 
-__init__ initializes a finding.
+__init__ initializes a finding of a given method, with sample and
+patient reference and a map of recorded values keyed by code.
 
 ``/finding class/init:
     def __init__(
@@ -627,7 +634,7 @@ class User:
     ``init``
 ``
 
-__init__ inits a User.
+__init__ inits a User with username, email and other values.
 
 ``/user class/init:
     def __init__(self,
@@ -677,7 +684,7 @@ INTEGER (e.g. URNCT)
     type:str = None
 ``
 
-__init__ inits a Rec.
+__init__ inits a Rec of method for labval code.
 
 ``/rec/init:
     def __init__(self, method:str=None, labval:str=None):
@@ -699,7 +706,7 @@ value is the boolean value for the rec.
     value:bool = None
 ``
 
-__init__ inits a BooleanRec.
+__init__ inits a BooleanRec of given method with labval code and value.
 
 ``/booleanrec/init:
     def __init__(self, method:str=None, labval:str=None, value:bool=None):
@@ -729,7 +736,7 @@ unit is the unit via the laborvalue.
     unit:str = None
 ``
 
-__init__ inits a NumberRec.
+__init__ inits a NumberRec of given method with labval code, value and unit.
 
 ``/numberrec/init:
     def __init__(self, method:str=None, labval:str=None, value:float=None, unit:str=None):
@@ -753,7 +760,7 @@ value is the string value for the rec.
     value:str = None
 ``
 
-__init__ inits a StringRec.
+__init__ inits a StringRec of given method with labval code and value.
 
 ``/stringrec/init:
     def __init__(self, method:str=None, labval:str=None, value:str=None):
@@ -775,7 +782,7 @@ value is the date value for the rec.
     value:datetime = None
 ``
 
-__init__ inits a DateRec.
+__init__ inits a DateRec of given method with labval code and value.
 
 ``/daterec/init:
     def __init__(self, method:str=None, labval:str=None, value:datetime=None):
@@ -798,7 +805,7 @@ values holds the usage entry (kontrolliertes vokabular) codes.
     values:str = None
 ``
 
-__init__ inits a MultiRec.
+__init__ inits a MultiRec of given method with labval code and list of values.
 
 ``/multirec/init:
     def __init__(self, method:str=None, labval:str=None, values:list=None):
@@ -827,7 +834,8 @@ catalog holds the catalog code.
     catalog:str = None
 ``
 
-__init__ inits a CatalogRec.
+__init__ inits a CatalogRec of given method with labval code, list of
+values and the corresponding cataloge code.
 
 ``/catalogrec/init:
     def __init__(self, method:str=None, labval:str=None, values:list=None, catalog:str=None):

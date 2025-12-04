@@ -3,9 +3,9 @@
 models for centraxx samples, patients, findings and else.
 
 ```
-from tram import Sample, Identifier
+from tram import Sample, Idable
 sample = Sample(
-  sampleid=Identifier(id="sample1", code="SAMPLEID")
+  ids=Idable(id="sample1", code="SAMPLEID")
 )
 ```
 
@@ -27,25 +27,31 @@ make a sample that belongs to a patient and give it an amount.
 
 ```
 sample = Sample(
-  sampleid=Identifier(id="sample1", code="SAMPLEID"),
+  ids=Idable(id="sample1", code="SAMPLEID"),
   type="EDTA",
   patientid=Idable(id="pat1", code="PSN", mainidc="PSN"),
   restamount=Amount(value=1, unit="ml")
 )
 ```
 
-Idables holds a collection of Identifiers, the code of the main id is
-specified by mainidc.
+Idable holds a collection of Identifiers, in this case, one with code SAMPLEID.
 
-make a finding and pass it a recorded value.
+make a recorded value of type string.
 
 ```
 rec = StringRec(method="PATHO", labval="PATHOGEN", value="E-Coli")
+```
 
+make a finding and pass it the recorded value.
+
+```
 finding = Finding(
     method="PATHOGEN",
-    patient=Idable(id="pat1", code="PSN", mainidc="PSN"),
+    patient=Idable(ids=pids, mainidc="PSN"),
     recs=[rec],
-    sample=Idable(id="samp1", code="SAMPLEID", mainidc="SAMPLEID"),
+    sample=Idable(ids=sids, mainidc="SAMPLEID"),
 )
 ```
+
+when a list of identifiers is passed to Idable, the code of the main
+identifier (mainidc) can be given.
