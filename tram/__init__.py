@@ -250,14 +250,14 @@ class Rec:
     type:str = None
     def __init__(self, method:str=None, labval:str=None):
         """
-         __init__ inits a Rec.
+         __init__ inits a Rec of method for labval code.
         """
         self.labval = labval
 class BooleanRec(Rec):
     value:bool = None
     def __init__(self, method:str=None, labval:str=None, value:bool=None):
         """
-         __init__ inits a BooleanRec.
+         __init__ inits a BooleanRec of given method with labval code and value.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.value = value
@@ -266,7 +266,7 @@ class NumberRec(Rec):
     unit:str = None
     def __init__(self, method:str=None, labval:str=None, value:float=None, unit:str=None):
         """
-         __init__ inits a NumberRec.
+         __init__ inits a NumberRec of given method with labval code, value and unit.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.value = value
@@ -275,7 +275,7 @@ class StringRec(Rec):
     value:str = None
     def __init__(self, method:str=None, labval:str=None, value:str=None):
         """
-         __init__ inits a StringRec.
+         __init__ inits a StringRec of given method with labval code and value.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.value = value
@@ -283,7 +283,7 @@ class DateRec(Rec):
     value:datetime = None
     def __init__(self, method:str=None, labval:str=None, value:datetime=None):
         """
-         __init__ inits a DateRec.
+         __init__ inits a DateRec of given method with labval code and value.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.value = value
@@ -292,7 +292,8 @@ class CatalogRec(Rec):
     catalog:str = None
     def __init__(self, method:str=None, labval:str=None, values:list=None, catalog:str=None):
         """
-         __init__ inits a CatalogRec.
+         __init__ inits a CatalogRec of given method with labval code, list of
+         values and the corresponding cataloge code.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.values = values
@@ -301,7 +302,7 @@ class MultiRec(Rec):
     values:str = None
     def __init__(self, method:str=None, labval:str=None, values:list=None):
         """
-         __init__ inits a MultiRec.
+         __init__ inits a MultiRec of given method with labval code and list of values.
         """
         Rec.__init__(self, method=method, labval=labval)
         self.values = values
