@@ -529,6 +529,7 @@ __init__ initializes a patient with ids and orga.
 call super.
 
 ``
+        #print("ids: " + str(ids.ids))
         Idable.__init__(self, ids.ids, ids.mainidc)
 ``
 

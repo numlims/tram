@@ -200,6 +200,7 @@ class Patient(Idable):
       ids:Idable=None,
       orga:str=None
     ):
+        #print("ids: " + str(ids.ids))
         Idable.__init__(self, ids.ids, ids.mainidc)
         self.orga = orga
     def __getstate__(self):
