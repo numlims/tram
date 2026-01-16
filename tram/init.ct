@@ -144,6 +144,8 @@ given, the id value for the main idc is returned.
         return None
 ``
 
+set_id sets the id for the given code.
+
 ``/idable class/set_id:
     def set_id(self, code:str=None, id:str=None):
         ``.``
@@ -799,18 +801,18 @@ class MultiRec(Rec):
     ``init``
 ``
 
-values holds the usage entry (kontrolliertes vokabular) codes.
+value holds a list of the usage entry (kontrolliertes vokabular) codes.
 
 ``/multirec/var:
-    values:str = None
+    value:list = None
 ``
 
 __init__ inits a MultiRec of given method with labval code and list of values.
 
 ``/multirec/init:
-    def __init__(self, method:str=None, labval:str=None, values:list=None):
+    def __init__(self, method:str=None, labval:str=None, value:list=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.values = values
+        self.value = value
 ``
 
 
@@ -822,10 +824,10 @@ class CatalogRec(Rec):
     ``init``
 ``
 
-values holds the catalog entry codes.
+value holds a list of the the catalog entry codes.
 
 ``/catalogrec/var:
-    values:str = None
+    value:list = None
 ``
 
 catalog holds the catalog code.
@@ -838,9 +840,9 @@ __init__ inits a CatalogRec of given method with labval code, list of
 values and the corresponding cataloge code.
 
 ``/catalogrec/init:
-    def __init__(self, method:str=None, labval:str=None, values:list=None, catalog:str=None):
+    def __init__(self, method:str=None, labval:str=None, value:list=None, catalog:str=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.values = values
+        self.value = value
         self.catalog = catalog
 ``
 
