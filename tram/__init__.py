@@ -59,6 +59,7 @@ class Idable:
         return None
     def set_id(self, code:str=None, id:str=None):
         """
+         set_id sets the id for the given code.
         """
         for identifier in self.ids:
             if identifier.code == code:
@@ -254,56 +255,62 @@ class Rec:
         """
         self.labval = labval
 class BooleanRec(Rec):
-    value:bool = None
-    def __init__(self, method:str=None, labval:str=None, value:bool=None):
+    rec:bool = None
+    def __init__(self, method:str=None, labval:str=None, rec:bool=None):
         """
-         __init__ inits a BooleanRec of given method with labval code and value.
+         __init__ inits a BooleanRec of given method with labval code and recorded value.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 class NumberRec(Rec):
-    value:float = None
+    rec:float = None
     unit:str = None
-    def __init__(self, method:str=None, labval:str=None, value:float=None, unit:str=None):
+    def __init__(self, method:str=None, labval:str=None, rec:float=None, unit:str=None):
         """
-         __init__ inits a NumberRec of given method with labval code, value and unit.
+         __init__ inits a NumberRec of given method with labval code, rec and unit.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
         self.unit = unit
 class StringRec(Rec):
-    value:str = None
-    def __init__(self, method:str=None, labval:str=None, value:str=None):
+    rec:str = None
+    def __init__(self, method:str=None, labval:str=None, rec:str=None):
         """
-         __init__ inits a StringRec of given method with labval code and value.
+         __init__ inits a StringRec of given method with labval code and recorded value.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 class DateRec(Rec):
-    value:datetime = None
-    def __init__(self, method:str=None, labval:str=None, value:datetime=None):
+    rec:datetime = None
+    def __init__(self, method:str=None, labval:str=None, rec:datetime=None):
         """
-         __init__ inits a DateRec of given method with labval code and value.
+         __init__ inits a DateRec of given method with labval code and recorded value.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 class CatalogRec(Rec):
-    values:str = None
+    rec:list = None
+    rec_name:map = {}
     catalog:str = None
-    def __init__(self, method:str=None, labval:str=None, values:list=None, catalog:str=None):
+    def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None, catalog:str=None):
         """
          __init__ inits a CatalogRec of given method with labval code, list of
-         values and the corresponding cataloge code.
+         recorded value codes, their display names, and the corresponding cataloge code.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.values = values
+        self.rec = rec
+        self.rec_name = rec_name
         self.catalog = catalog
 class MultiRec(Rec):
-    values:str = None
-    def __init__(self, method:str=None, labval:str=None, values:list=None):
+    rec:list = None
+    rec_name:map = {}
+    def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None):
         """
-         __init__ inits a MultiRec of given method with labval code and list of values.
+         __init__ inits a MultiRec of given method with labval code and list of recorded value codes and dict of recorded value names.
         """
         Rec.__init__(self, method=method, labval=labval)
-        self.values = values
+        if rec_name is None: # avoid mutable default params
+            rec_name = {}
+        self.rec = rec
+        self.rec_name = rec_name
 

@@ -702,18 +702,18 @@ class BooleanRec(Rec):
     ``init``
 ``
 
-value is the boolean value for the rec.
+rec is the boolean recorded value.
 
 ``/booleanrec/var:
-    value:bool = None
+    rec:bool = None
 ``
 
-__init__ inits a BooleanRec of given method with labval code and value.
+__init__ inits a BooleanRec of given method with labval code and recorded value.
 
 ``/booleanrec/init:
-    def __init__(self, method:str=None, labval:str=None, value:bool=None):
+    def __init__(self, method:str=None, labval:str=None, rec:bool=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 ``
 
 NumberRec holds a DECIMAL rec. (what about INTEGER?)
@@ -724,12 +724,12 @@ class NumberRec(Rec):
     ``init``
 ``
 
-value is the number value for the rec.
+rec is the number recorded value.
 
 is float ok for all?
 
 ``/numberrec/var:
-    value:float = None
+    rec:float = None
 ``
 
 unit is the unit via the laborvalue.
@@ -738,12 +738,12 @@ unit is the unit via the laborvalue.
     unit:str = None
 ``
 
-__init__ inits a NumberRec of given method with labval code, value and unit.
+__init__ inits a NumberRec of given method with labval code, rec and unit.
 
 ``/numberrec/init:
-    def __init__(self, method:str=None, labval:str=None, value:float=None, unit:str=None):
+    def __init__(self, method:str=None, labval:str=None, rec:float=None, unit:str=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
         self.unit = unit
 ``
 
@@ -756,18 +756,18 @@ class StringRec(Rec):
     ``init``
 ``
 
-value is the string value for the rec.
+rec is the string recorded value.
 
 ``/stringrec/var:
-    value:str = None
+    rec:str = None
 ``
 
-__init__ inits a StringRec of given method with labval code and value.
+__init__ inits a StringRec of given method with labval code and recorded value.
 
 ``/stringrec/init:
-    def __init__(self, method:str=None, labval:str=None, value:str=None):
+    def __init__(self, method:str=None, labval:str=None, rec:str=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 ``
 
 DateRec holds a DATE or LONGDATE rec.
@@ -778,18 +778,18 @@ class DateRec(Rec):
     ``init``
 ``
 
-value is the date value for the rec.
+rec is the date recorded value.
 
 ``/daterec/var:
-    value:datetime = None
+    rec:datetime = None
 ``
 
-__init__ inits a DateRec of given method with labval code and value.
+__init__ inits a DateRec of given method with labval code and recorded value.
 
 ``/daterec/init:
-    def __init__(self, method:str=None, labval:str=None, value:datetime=None):
+    def __init__(self, method:str=None, labval:str=None, rec:datetime=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
 ``
 
 
@@ -801,18 +801,27 @@ class MultiRec(Rec):
     ``init``
 ``
 
-value holds a list of the usage entry (kontrolliertes vokabular) codes.
+rec holds a list of the usage entry (kontrolliertes vokabular) codes.
 
 ``/multirec/var:
-    value:list = None
+    rec:list = None
 ``
 
-__init__ inits a MultiRec of given method with labval code and list of values.
+rec_name holds a dict of the usageentry display names keyed by the usageentry codes.
+
+``
+    rec_name:map = {}
+``
+
+__init__ inits a MultiRec of given method with labval code and list of recorded value codes and dict of recorded value names.
 
 ``/multirec/init:
-    def __init__(self, method:str=None, labval:str=None, value:list=None):
+    def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        if rec_name is None: # avoid mutable default params
+            rec_name = {}
+        self.rec = rec
+        self.rec_name = rec_name
 ``
 
 
@@ -824,10 +833,16 @@ class CatalogRec(Rec):
     ``init``
 ``
 
-value holds a list of the the catalog entry codes.
+rec holds a list of the the catalog entry codes.
 
 ``/catalogrec/var:
-    value:list = None
+    rec:list = None
+``
+
+rec_name holds a dict of the catalogentry display names keyed by the catalogentry codes.
+
+``
+    rec_name:map = {}
 ``
 
 catalog holds the catalog code.
@@ -837,12 +852,13 @@ catalog holds the catalog code.
 ``
 
 __init__ inits a CatalogRec of given method with labval code, list of
-values and the corresponding cataloge code.
+recorded value codes, their display names, and the corresponding cataloge code.
 
 ``/catalogrec/init:
-    def __init__(self, method:str=None, labval:str=None, value:list=None, catalog:str=None):
+    def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None, catalog:str=None):
         Rec.__init__(self, method=method, labval=labval)
-        self.value = value
+        self.rec = rec
+        self.rec_name = rec_name
         self.catalog = catalog
 ``
 
