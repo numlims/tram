@@ -39,7 +39,7 @@ Idable holds a collection of Identifiers, in this case, one with code SAMPLEID.
 make a recorded value of type string.
 
 ```
-rec = StringRec(method="PATHO", labval="PATHOGEN", value="E-Coli")
+rec = StringRec(method="PATHO", labval="PATHOGEN", rec="E-Coli")
 ```
 
 make a finding and pass it the recorded value.
