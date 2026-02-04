@@ -94,6 +94,7 @@ class Sample(Idable):
     appointment:str = None
     category:str = None
     concentration=None
+    creationdate:datetime=None
     derivaldate:datetime=None
     receiptdate:datetime=None
     first_repositiondate:datetime=None
@@ -121,6 +122,7 @@ class Sample(Idable):
          category:str=None,
          cxxkitid:str=None,
          concentration=None, # str?
+         creationdate:datetime=None,
          derivaldate:datetime=None,
          first_repositiondate:datetime=None,
          ids:Idable=None, 
@@ -151,6 +153,7 @@ class Sample(Idable):
         self.category = category
         self.cxxkitid = cxxkitid
         self.concentration = concentration
+        self.creationdate = creationdate
         self.derivaldate = derivaldate
         self.receiptdate = receiptdate
         self.first_repositiondate = first_repositiondate

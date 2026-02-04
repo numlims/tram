@@ -1,3 +1,10 @@
+# tram
+
+models for centraxx.
+
+there are classes for sample, patient, finding, etc, some of them are
+Idable, and classes for the various types of recorded values.
+
 ``//__init__.py: #py
 
 ``import``
@@ -20,6 +27,8 @@
 
 ``
 
+## Identifier
+
 Identifier holds an identifier.
 
 ``/identifier class:
@@ -40,6 +49,8 @@ remember the arguments.
         self.id = id
         self.code = code
 ``
+
+## Amount
 
 Amount holds an amount.
 
@@ -69,6 +80,8 @@ __str__ gives the value and unit in human-readable format.
     def __str__(self):
         return str(self.value) + " " + self.unit
 ``
+
+## Idable
 
 Idable holds a list of identifiers with idcontainer codes and
 remembers which is the main idc code.
@@ -222,8 +235,9 @@ return the dict.
 ``
         return d
 ``
-        
 
+
+## Sample
 
 Sample holds a sample.
 
@@ -256,6 +270,12 @@ concentration holds the sample's concentration.
 
 ``
     concentration=None
+``
+
+creationdate holds the sample's creation date in the db.
+
+``
+    creationdate:datetime=None
 ``
 
 derivaldate holds the sample's derival date (when it was derived as an
@@ -415,6 +435,7 @@ range of values.
          category:str=None,
          cxxkitid:str=None,
          concentration=None, # str?
+         creationdate:datetime=None,
          derivaldate:datetime=None,
          first_repositiondate:datetime=None,
          ids:Idable=None, 
@@ -456,6 +477,7 @@ fill in the parameters.
         self.category = category
         self.cxxkitid = cxxkitid
         self.concentration = concentration
+        self.creationdate = creationdate
         self.derivaldate = derivaldate
         self.receiptdate = receiptdate
         self.first_repositiondate = first_repositiondate
@@ -508,6 +530,7 @@ patientid in root level, for quicker access.
         return state
 ``
 
+## Patient
 
 Patient holds a patient.
 
@@ -551,6 +574,9 @@ __getstate__ returns what gets jsonpickled. include the patientid at the root le
         return state
 ``
 
+## Finding
+
+Finding holds a finding and its recorded values.
 
 ``/finding class:
 class Finding:
@@ -629,6 +655,8 @@ remember the arguments.
         self.sender = sender
 ``
 
+## User
+
 User holds a cxx user.
 
 ``/user class:
@@ -653,6 +681,8 @@ remember the arguments.
         self.email = email
         self.username = username
 ``
+
+## Rec
 
 Rec is the base class for recorded values like StringRec, etc.
 
@@ -693,6 +723,8 @@ __init__ inits a Rec of method for labval code.
         self.labval = labval
 ``
 
+## BooleanRec
+
 
 BooleanRec holds a BOOLEAN rec.
 
@@ -715,6 +747,8 @@ __init__ inits a BooleanRec of given method with labval code and recorded value.
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
 ``
+
+## NumberRec
 
 NumberRec holds a DECIMAL rec. (what about INTEGER?)
 
@@ -747,6 +781,7 @@ __init__ inits a NumberRec of given method with labval code, rec and unit.
         self.unit = unit
 ``
 
+## StringRec
 
 StringRec holds a STRING or LONGSTRING rec.
 
@@ -770,6 +805,8 @@ __init__ inits a StringRec of given method with labval code and recorded value.
         self.rec = rec
 ``
 
+## DateRec
+
 DateRec holds a DATE or LONGDATE rec.
 
 ``/daterec:
@@ -792,6 +829,7 @@ __init__ inits a DateRec of given method with labval code and recorded value.
         self.rec = rec
 ``
 
+## MultiRec
 
 MultiRec holds an OPTIONGROUP or ENUMERATION rec.
 
@@ -824,6 +862,7 @@ __init__ inits a MultiRec of given method with labval code and list of recorded 
         self.rec_name = rec_name
 ``
 
+## CatalogRec
 
 CatalogRec holds a CATALOG rec.
 
