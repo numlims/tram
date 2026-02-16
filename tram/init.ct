@@ -78,7 +78,10 @@ __str__ gives the value and unit in human-readable format.
 
 ``/amount class/__str__:
     def __str__(self):
-        return str(self.value) + " " + self.unit
+        out = str(self.value)
+        if self.unit is not None:
+            out += " " + self.unit
+        return out
 ``
 
 ## Idable

@@ -20,7 +20,10 @@ class Amount:
         """
          __str__ gives the value and unit in human-readable format.
         """
-        return str(self.value) + " " + self.unit
+        out = str(self.value)
+        if self.unit is not None:
+            out += " " + self.unit
+        return out
 class Idable:
     def __init__(self, ids:list=None, mainidc:str=None, id=None, code:str=None):
         """
