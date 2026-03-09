@@ -587,7 +587,7 @@ class Finding:
     ``init``
 ``
 
-method holds the finding's method (messprofil).
+method holds the finding's method (messprofil) code.
 
 ``/finding class/var:
     method:str=None
@@ -599,10 +599,10 @@ findingdate holds the finding's finding date.
     findingdate:datetime=None
 ``
 
-methodname holds the finding's method name. (why extra?).
+name holds the finding's name.
 
 ``
-    methodname:str=None
+    name:str=None
 ``
 
 patient references the patient this finding belongs to.
@@ -637,7 +637,7 @@ patient reference and a map of recorded values keyed by code.
         self,
         findingdate:datetime=None,
         method:str=None,
-        methodname:str=None,
+        name:str=None,
         patient:Idable=None,        
         recs:map={}, # of Rec, by code
         sample:Idable=None,
@@ -651,7 +651,7 @@ remember the arguments.
 ``
         self.findingdate = findingdate
         self.method = method
-        self.methodname = methodname
+        self.name = name
         self.patient = patient
         self.recs = recs
         self.sample = sample

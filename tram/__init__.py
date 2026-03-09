@@ -220,7 +220,7 @@ class Patient(Idable):
 class Finding:
     method:str=None
     findingdate:datetime=None
-    methodname:str=None
+    name:str=None
     patient:Idable=None
     recs:map={} # of Rec, by code
     sample:Idable
@@ -229,7 +229,7 @@ class Finding:
         self,
         findingdate:datetime=None,
         method:str=None,
-        methodname:str=None,
+        name:str=None,
         patient:Idable=None,        
         recs:map={}, # of Rec, by code
         sample:Idable=None,
@@ -237,7 +237,7 @@ class Finding:
     ):
         self.findingdate = findingdate
         self.method = method
-        self.methodname = methodname
+        self.name = name
         self.patient = patient
         self.recs = recs
         self.sample = sample
