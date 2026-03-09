@@ -246,10 +246,14 @@ class User:
     def __init__(self,
       lastlogin:datetime=None,
       email:str=None,
-      username:str=None):
+      username:str=None,
+      firstname:str=None,
+      lastname:str=None):
         self.lastlogin = lastlogin
         self.email = email
         self.username = username
+        self.firstname = firstname
+        self.lastname = lastname
 
 class Rec:
     method:str = None

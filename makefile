@@ -37,13 +37,13 @@ doc-publish:
 
 publish:
 	make build
-	make doc-publish
 	# move the version tag to the most recent commit
 	git tag -f "v${version}"
 	# delete tag on remote
 	git push origin ":refs/tags/v${version}" 
 	git push --tags   # push the local tags
 	gh release create "v${version}" "./dist/${name}-${version}-py3-none-any.whl"
+	make doc-publish
 
 publish-update: # if an asset was already uploaded, delete it before uploading again
 	make build
