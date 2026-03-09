@@ -673,7 +673,9 @@ __init__ inits a User with username, email and other values.
     def __init__(self,
       lastlogin:datetime=None,
       email:str=None,
-      username:str=None):
+      username:str=None,
+      firstname:str=None,
+      lastname:str=None):
         ``.``
 ``
 
@@ -683,6 +685,8 @@ remember the arguments.
         self.lastlogin = lastlogin
         self.email = email
         self.username = username
+        self.firstname = firstname
+        self.lastname = lastname
 ``
 
 ## Rec
