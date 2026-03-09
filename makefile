@@ -47,7 +47,6 @@ publish:
 
 publish-update: # if an asset was already uploaded, delete it before uploading again
 	make build
-	make doc-publish
 	# does the tag updating also update the source code at the resource?
 	# move the version tag to the most recent commit
 	git tag -f "v${version}"
@@ -59,3 +58,4 @@ publish-update: # if an asset was already uploaded, delete it before uploading a
 	gh release upload "v${version}" "./dist/${name}-${version}-py3-none-any.whl"
 	# apparently the tag change rolled the release back to draft, set it to publish again
 	gh release edit "v${version}" --draft=false
+	make doc-publish
