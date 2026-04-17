@@ -55,3 +55,15 @@ finding = Finding(
 
 when a list of identifiers is passed to Idable, the code of the main
 identifier (mainidc) can be given.
+
+## dev
+
+edit [`tram/init.ct`](./tram/init.ct).
+
+generate the code with [ct](https://github.com/tnustrings/ct) or [ct for vscode](https://marketplace.visualstudio.com/items?itemName=tnustrings.codetext).
+
+build and install:
+
+```
+make install
+```

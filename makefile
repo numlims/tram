@@ -10,6 +10,7 @@ version = $(shell git tag | sort -V | tail -1 | tr -d v)
 
 all:
 	ct tram/init.ct
+	ct tram/main.ct
 
 .PHONY: build install test doc doc-publish publish publish-update
 
