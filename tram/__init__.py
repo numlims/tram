@@ -123,9 +123,13 @@ class Sample(Idable):
     def __init__(self,
          appointment:str=None,
          category:str=None,
-         cxxkitid:str=None,
+         change_date:datetime=None,
+         change_id:int=None,
+         change_kind:str=None,
+         change_user:str=None,
          concentration=None, # str?
          creationdate:datetime=None,
+         cxxkitid:str=None,
          derivaldate:datetime=None,
          first_repositiondate:datetime=None,
          ids:Idable=None, 
@@ -154,8 +158,12 @@ class Sample(Idable):
         Idable.__init__(self, ids.ids, ids.mainidc)
         self.appointment = appointment
         self.category = category
-        self.cxxkitid = cxxkitid
+        self.change_date = change_date
+        self.change_id = change_id
+        self.change_kind = change_kind
+        self.change_user = change_user
         self.concentration = concentration
+        self.cxxkitid = cxxkitid        
         self.creationdate = creationdate
         self.derivaldate = derivaldate
         self.receiptdate = receiptdate
@@ -244,16 +252,18 @@ class Finding:
         self.sender = sender
 class User:
     def __init__(self,
-      lastlogin:datetime=None,
+      divisional_admin:bool,
       email:str=None,
-      username:str=None,
-      firstname:str=None,
-      lastname:str=None):
-        self.lastlogin = lastlogin
+      firstname:str=None,      
+      lastlogin:datetime=None,
+      lastname:str=None,    
+      username:str=None):
+        self.divisional_admin = divisional_admin
         self.email = email
+        self.firstname = firstname        
+        self.lastlogin = lastlogin
+        self.lastname = lastname        
         self.username = username
-        self.firstname = firstname
-        self.lastname = lastname
 
 class Rec:
     method:str = None
