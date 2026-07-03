@@ -16,6 +16,7 @@ Idable, and classes for the various types of recorded values.
 ``patient class``
 ``finding class``
 ``user class``
+``address class``
 
 ``rec``
 ``booleanrec``
@@ -679,8 +680,8 @@ __init__ inits a User with username, email and other values.
 
 ``/user class/init:
     def __init__(self,
-      divisional_admin:bool,
-      email:str=None,
+      address:Address=None,
+      divisional_admin:bool=None,
       firstname:str=None,      
       lastlogin:datetime=None,
       lastname:str=None,    
@@ -691,12 +692,60 @@ __init__ inits a User with username, email and other values.
 remember the arguments.
 
 ``
+        self.address = address
         self.divisional_admin = divisional_admin
-        self.email = email
         self.firstname = firstname        
         self.lastlogin = lastlogin
         self.lastname = lastname        
         self.username = username
+``
+
+## User Address
+
+Address holds a user address.
+
+``/address class:
+class Address:
+    ``init``
+``
+
+__init__ inits a Address with street, email, phone etc.. and other values.
+
+``/address class/init:
+    def __init__(self,
+      country_descriptor:str=None,
+      city:str=None,
+      email:str=None,
+      fax:str=None,
+      mobile:str=None,
+      phone1:str=None,
+      phone2:str=None,
+      street:str=None,
+      street_no:str=None,
+      zip_code:str=None,
+      po_box:str=None,
+      contact_person:str=None,
+      contact:number=None
+      ):
+        ``.``
+``
+
+remember the arguments.
+
+``
+        self.country_descriptor = country_descriptor
+        self.city = city
+        self.email = email
+        self.fax = fax
+        self.mobile = mobile
+        self.phone1 = phone1
+        self.phone2 = phone2
+        self.street = street
+        self.street_no = street_no
+        self.zip_code = zip_code
+        self.po_box = po_box
+        self.contact_person = contact_person
+        self.contact = contact
 ``
 
 ## Rec
