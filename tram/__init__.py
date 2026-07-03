@@ -1,37 +1,21 @@
-# automatically generated, DON'T EDIT. please edit init.ct from where this file stems.
 
 from datetime import datetime
 
 class Identifier:
     def __init__(self, id=None, code:str=None):
-        """
-         __init__ initializes an identifier with id and code.
-        """
         self.id = id
         self.code = code
 class Amount:
     def __init__(self, value:float=None, unit:str=None):
-        """
-         __init__ initializes an amount with value and unit.
-        """
         self.value = value
         self.unit = unit
     def __str__(self):
-        """
-         __str__ gives the value and unit in human-readable format.
-        """
         out = str(self.value)
         if self.unit is not None:
             out += " " + self.unit
         return out
 class Idable:
     def __init__(self, ids:list=None, mainidc:str=None, id=None, code:str=None):
-        """
-         __init__ initializes an Idable from a list of Identifiers and a
-         mainidc code. instead of passing a list of ids you can pass a single
-         id with code. in that case, that code becomes the main idc if no other
-         main idc is passed.
-        """
         self.ids = ids
         if self.ids is None:
             self.ids = []
@@ -43,40 +27,22 @@ class Idable:
                 self.mainidc = code
             self.ids.append(Identifier(id=id, code=code))
     def identifier(self, code:str=None) -> Identifier:
-        """
-         identifier returns the Identifier for the given code, if no code
-         given, the Identifier for the main idc returned.
-        """
         if code == None:
             code = self.mainidc
         for identifier in self.ids:
             if identifier.code == code:
                 return identifier
     def id(self, code:str=None) -> str:
-        """
-         id returns the id value for the given code, if no code
-         given, the id value for the main idc is returned.
-        """
         if self.identifier(code) is not None:
             return self.identifier(code).id
         return None
     def set_id(self, code:str=None, id:str=None):
-        """
-         set_id sets the id for the given code.
-        """
         for identifier in self.ids:
             if identifier.code == code:
                 identifier.id = id
                 return
         self.ids.append( Idable(id=id, code=code) )
     def iddict(self, *idcs):
-        """
-         iddict returns a copy of the __dict__ holding the given ids at the
-         root level of the dict in addition to the classes attributes.  if no
-         ids are given, all ids taken.  the ids and mainidc fields are cleared,
-         exept when keep is true. if iddict is called on an inheriting class
-         (e.g. Sample) the dict gives the inheriting classes attributes.
-        """
         d = self.__dict__.copy()
         if idcs == None or len(idcs) == 0:
             idcs = [id.code for id in self.ids]
@@ -86,10 +52,6 @@ class Idable:
         del d["mainidc"]
         return d
     def __str__(self):
-        """
-         __str__ gives a human readable representation of Idable, here the
-         id string.
-        """
         if self.id() is not None:
             return self.id()
         return ""
@@ -189,22 +151,11 @@ class Sample(Idable):
         self.xposition = xposition
         self.yposition = yposition
     def default(self, o):
-        """
-         default returns the json dict.
-        """
         return o.__dict__
     @property
     def sampleid(self):
-        """
-         sampleid is a shorthand to get the sampleid so it isn't buried in a
-         dict when displaying the object as json.
-        """
         return "bla" # self.get_id()
     def __getstate__(self):
-        """
-         __getstate__ returns what gets jsonpickled. include sampleid and
-         patientid in root level, for quicker access.
-        """
         state = self.__dict__.copy() # is this slow?
         state["sampleid"] = self.id()
         state["patientid"] = self.patient.id() if self.patient else None
@@ -219,9 +170,6 @@ class Patient(Idable):
         Idable.__init__(self, ids.ids, ids.mainidc)
         self.orga = orga
     def __getstate__(self):
-        """
-         __getstate__ returns what gets jsonpickled. include the patientid at the root level, for quicker access.
-        """
         state = self.__dict__.copy() # is this slow?
         state["patientid"] = self.id()
         return state
@@ -252,60 +200,74 @@ class Finding:
         self.sender = sender
 class User:
     def __init__(self,
-      divisional_admin:bool,
-      email:str=None,
+      address:Address=None,
+      divisional_admin:bool=None,
       firstname:str=None,      
       lastlogin:datetime=None,
       lastname:str=None,    
       username:str=None):
+        self.address = address
         self.divisional_admin = divisional_admin
-        self.email = email
         self.firstname = firstname        
         self.lastlogin = lastlogin
         self.lastname = lastname        
         self.username = username
+class Address:
+    def __init__(self,
+      country_descriptor:str=None,
+      city:str=None,
+      email:str=None,
+      fax:str=None,
+      mobile:str=None,
+      phone1:str=None,
+      phone2:str=None,
+      street:str=None,
+      street_no:str=None,
+      zip_code:str=None,
+      po_box:str=None,
+      contact_person:str=None,
+      contact:number=None
+      ):
+        self.country_descriptor = country_descriptor
+        self.city = city
+        self.email = email
+        self.fax = fax
+        self.mobile = mobile
+        self.phone1 = phone1
+        self.phone2 = phone2
+        self.street = street
+        self.street_no = street_no
+        self.zip_code = zip_code
+        self.po_box = po_box
+        self.contact_person = contact_person
+        self.contact = contact
 
 class Rec:
     method:str = None
     labval:str = None
     type:str = None
     def __init__(self, method:str=None, labval:str=None):
-        """
-         __init__ inits a Rec of method for labval code.
-        """
         self.labval = labval
 class BooleanRec(Rec):
     rec:bool = None
     def __init__(self, method:str=None, labval:str=None, rec:bool=None):
-        """
-         __init__ inits a BooleanRec of given method with labval code and recorded value.
-        """
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
 class NumberRec(Rec):
     rec:float = None
     unit:str = None
     def __init__(self, method:str=None, labval:str=None, rec:float=None, unit:str=None):
-        """
-         __init__ inits a NumberRec of given method with labval code, rec and unit.
-        """
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
         self.unit = unit
 class StringRec(Rec):
     rec:str = None
     def __init__(self, method:str=None, labval:str=None, rec:str=None):
-        """
-         __init__ inits a StringRec of given method with labval code and recorded value.
-        """
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
 class DateRec(Rec):
     rec:datetime = None
     def __init__(self, method:str=None, labval:str=None, rec:datetime=None):
-        """
-         __init__ inits a DateRec of given method with labval code and recorded value.
-        """
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
 class CatalogRec(Rec):
@@ -313,10 +275,6 @@ class CatalogRec(Rec):
     rec_name:map = {}
     catalog:str = None
     def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None, catalog:str=None):
-        """
-         __init__ inits a CatalogRec of given method with labval code, list of
-         recorded value codes, their display names, and the corresponding cataloge code.
-        """
         Rec.__init__(self, method=method, labval=labval)
         self.rec = rec
         self.rec_name = rec_name
@@ -325,9 +283,6 @@ class MultiRec(Rec):
     rec:list = None
     rec_name:map = {}
     def __init__(self, method:str=None, labval:str=None, rec:list=None, rec_name:map=None):
-        """
-         __init__ inits a MultiRec of given method with labval code and list of recorded value codes and dict of recorded value names.
-        """
         Rec.__init__(self, method=method, labval=labval)
         if rec_name is None: # avoid mutable default params
             rec_name = {}
