@@ -241,6 +241,17 @@ class Address:
         self.po_box = po_box
         self.contact_person = contact_person
         self.contact = contact
+class Trial:
+    def __init__(self,
+      code:str=None,
+      name:str=None,
+      orgas:list=None,
+      users:list=None,
+      ):
+        self.code = code
+        self.name = name
+        self.orgas = orgas
+        self.users = users
 
 class Rec:
     method:str = None
