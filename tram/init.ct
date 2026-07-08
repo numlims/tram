@@ -680,7 +680,7 @@ __init__ inits a User with username, email and other values.
 
 ``/user class/init:
     def __init__(self,
-      address:Address=None,
+      address=None, # TODO :Address
       divisional_admin:bool=None,
       firstname:str=None,      
       lastlogin:datetime=None,
@@ -725,7 +725,7 @@ __init__ inits a Address with street, email, phone etc.. and other values.
       zip_code:str=None,
       po_box:str=None,
       contact_person:str=None,
-      contact:number=None
+      contact:int=None
       ):
         ``.``
 ``
