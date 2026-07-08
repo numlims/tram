@@ -17,6 +17,7 @@ Idable, and classes for the various types of recorded values.
 ``finding class``
 ``user class``
 ``address class``
+``trial class``
 
 ``rec``
 ``booleanrec``
@@ -746,6 +747,36 @@ remember the arguments.
         self.po_box = po_box
         self.contact_person = contact_person
         self.contact = contact
+``
+
+## Trial
+
+Trial holds a trial object such as code, name, orgas, users, etc.
+
+``/trial class:
+class Trial:
+    ``init``
+``
+
+__init__ inits a Trial with code, name, orgas, users and other values.
+
+``/trial class/init:
+    def __init__(self,
+      code:str=None,
+      name:str=None,
+      orgas:list=None,
+      users:list=None,
+      ):
+        ``.``
+``
+
+remember the arguments.
+
+``
+        self.code = code
+        self.name = name
+        self.orgas = orgas
+        self.users = users
 ``
 
 ## Rec
