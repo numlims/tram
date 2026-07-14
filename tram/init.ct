@@ -782,7 +782,7 @@ remember the arguments.
 
 ## Location
 
-Location holds a location object such as code and location path.
+Location holds a location object such as location schema and location path.
 
 ``/location class:
 class Location:
@@ -792,14 +792,14 @@ class Location:
 __init__ inits a Location with code and path.
 
 ``/location class/init:
-    def __init__(self, code:str=None, path:str=None):
+    def __init__(self, schema:str=None, path:str=None):
         ``.``
 ``
 
 remember the arguments.
 
 ``
-        self.code = code
+        self.schema = schema
         self.path = path
 ``
 
