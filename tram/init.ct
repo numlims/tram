@@ -18,6 +18,7 @@ Idable, and classes for the various types of recorded values.
 ``user class``
 ``address class``
 ``trial class``
+``location class``
 
 ``rec``
 ``booleanrec``
@@ -777,6 +778,29 @@ remember the arguments.
         self.name = name
         self.orgas = orgas
         self.users = users
+``
+
+## Location
+
+Location holds a location object such as code and location path.
+
+``/location class:
+class Location:
+    ``init``
+``
+
+__init__ inits a Location with code and path.
+
+``/location class/init:
+    def __init__(self, code:str=None, path:str=None):
+        ``.``
+``
+
+remember the arguments.
+
+``
+        self.code = code
+        self.path = path
 ``
 
 ## Rec

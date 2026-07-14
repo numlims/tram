@@ -252,6 +252,10 @@ class Trial:
         self.name = name
         self.orgas = orgas
         self.users = users
+class Location:
+    def __init__(self, code:str=None, path:str=None):
+        self.code = code
+        self.path = path
 
 class Rec:
     method:str = None
