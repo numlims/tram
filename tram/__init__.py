@@ -250,20 +250,6 @@ class Finding:
         self.recs = recs
         self.sample = sample
         self.sender = sender
-class User:
-    def __init__(self,
-      address=None, # TODO :Address
-      divisional_admin:bool=None,
-      firstname:str=None,      
-      lastlogin:datetime=None,
-      lastname:str=None,    
-      username:str=None):
-        self.address = address
-        self.divisional_admin = divisional_admin
-        self.firstname = firstname        
-        self.lastlogin = lastlogin
-        self.lastname = lastname        
-        self.username = username
 class Address:
     def __init__(self,
       country_descriptor:str=None,
@@ -293,6 +279,20 @@ class Address:
         self.po_box = po_box
         self.contact_person = contact_person
         self.contact = contact
+class User:
+    def __init__(self,
+      address:Address=None,
+      divisional_admin:bool=None,
+      firstname:str=None,      
+      lastlogin:datetime=None,
+      lastname:str=None,    
+      username:str=None):
+        self.address = address
+        self.divisional_admin = divisional_admin
+        self.firstname = firstname        
+        self.lastlogin = lastlogin
+        self.lastname = lastname        
+        self.username = username
 class Trial:
     def __init__(self,
       code:str=None,

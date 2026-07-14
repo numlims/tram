@@ -15,8 +15,8 @@ Idable, and classes for the various types of recorded values.
 ``sample class``
 ``patient class``
 ``finding class``
-``user class``
 ``address class``
+``user class``
 ``trial class``
 
 ``rec``
@@ -668,49 +668,16 @@ remember the arguments.
         self.sender = sender
 ``
 
-## User
+## Address
 
-User holds a cxx user.
-
-``/user class:
-class User:
-    ``init``
-``
-
-__init__ inits a User with username, email and other values.
-
-``/user class/init:
-    def __init__(self,
-      address=None, # TODO :Address
-      divisional_admin:bool=None,
-      firstname:str=None,      
-      lastlogin:datetime=None,
-      lastname:str=None,    
-      username:str=None):
-        ``.``
-``
-
-remember the arguments.
-
-``
-        self.address = address
-        self.divisional_admin = divisional_admin
-        self.firstname = firstname        
-        self.lastlogin = lastlogin
-        self.lastname = lastname        
-        self.username = username
-``
-
-## User Address
-
-Address holds a user address.
+Address holds an address.
 
 ``/address class:
 class Address:
     ``init``
 ``
 
-__init__ inits a Address with street, email, phone etc.. and other values.
+__init__ inits an Address with street, email, phone etc.
 
 ``/address class/init:
     def __init__(self,
@@ -748,6 +715,41 @@ remember the arguments.
         self.contact_person = contact_person
         self.contact = contact
 ``
+
+
+## User
+
+User holds a cxx user.
+
+``/user class:
+class User:
+    ``init``
+``
+
+__init__ inits a User with username, email and other values.
+
+``/user class/init:
+    def __init__(self,
+      address:Address=None,
+      divisional_admin:bool=None,
+      firstname:str=None,      
+      lastlogin:datetime=None,
+      lastname:str=None,    
+      username:str=None):
+        ``.``
+``
+
+remember the arguments.
+
+``
+        self.address = address
+        self.divisional_admin = divisional_admin
+        self.firstname = firstname        
+        self.lastlogin = lastlogin
+        self.lastname = lastname        
+        self.username = username
+``
+
 
 ## Trial
 
