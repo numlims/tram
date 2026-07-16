@@ -15,8 +15,8 @@ Idable, and classes for the various types of recorded values.
 ``sample class``
 ``patient class``
 ``finding class``
-``user class``
 ``address class``
+``user class``
 ``trial class``
 
 ``rec``
@@ -668,6 +668,55 @@ remember the arguments.
         self.sender = sender
 ``
 
+## Address
+
+Address holds an address.
+
+``/address class:
+class Address:
+    ``init``
+``
+
+__init__ inits an Address with street, email, phone etc.
+
+``/address class/init:
+    def __init__(self,
+      country_descriptor:str=None,
+      city:str=None,
+      email:str=None,
+      fax:str=None,
+      mobile:str=None,
+      phone1:str=None,
+      phone2:str=None,
+      street:str=None,
+      street_no:str=None,
+      zip_code:str=None,
+      po_box:str=None,
+      contact_person:str=None,
+      contact:int=None
+      ):
+        ``.``
+``
+
+remember the arguments.
+
+``
+        self.country_descriptor = country_descriptor
+        self.city = city
+        self.email = email
+        self.fax = fax
+        self.mobile = mobile
+        self.phone1 = phone1
+        self.phone2 = phone2
+        self.street = street
+        self.street_no = street_no
+        self.zip_code = zip_code
+        self.po_box = po_box
+        self.contact_person = contact_person
+        self.contact = contact
+``
+
+
 ## User
 
 User holds a cxx user.
@@ -701,53 +750,6 @@ remember the arguments.
         self.username = username
 ``
 
-## User Address
-
-Address holds a user address.
-
-``/address class:
-class Address:
-    ``init``
-``
-
-__init__ inits a Address with street, email, phone etc.. and other values.
-
-``/address class/init:
-    def __init__(self,
-      country_descriptor:str=None,
-      city:str=None,
-      email:str=None,
-      fax:str=None,
-      mobile:str=None,
-      phone1:str=None,
-      phone2:str=None,
-      street:str=None,
-      street_no:str=None,
-      zip_code:str=None,
-      po_box:str=None,
-      contact_person:str=None,
-      contact:number=None
-      ):
-        ``.``
-``
-
-remember the arguments.
-
-``
-        self.country_descriptor = country_descriptor
-        self.city = city
-        self.email = email
-        self.fax = fax
-        self.mobile = mobile
-        self.phone1 = phone1
-        self.phone2 = phone2
-        self.street = street
-        self.street_no = street_no
-        self.zip_code = zip_code
-        self.po_box = po_box
-        self.contact_person = contact_person
-        self.contact = contact
-``
 
 ## Trial
 
