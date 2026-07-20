@@ -315,10 +315,10 @@ initialamount holds the sample's initial amount.
     initialamount:Amount=None
 ``
 
-locationname holds the last part of the locationpath, the rack name.
+locationid holds the last part of the locationpath, the rack name.
 
 ``
-    locationname:str=None
+    locationid:str=None
 ``
 
 locationpath holds the sample's locationpath.
@@ -452,7 +452,7 @@ range of values.
          initialamount:Amount=None,
          kitid:str=None,
          locationpath:str=None,
-         locationname:str=None,
+         locationid:str=None,
          orga:str=None,
          parent:Idable=None,
          patient:Idable=None,
@@ -498,7 +498,7 @@ fill in the parameters.
         self.initialamount = initialamount
         self.kitid = kitid
         self.locationpath = locationpath
-        self.locationname = locationname
+        self.locationid = locationid
         self.orga = orga
         self.parent = parent
         self.patient = patient

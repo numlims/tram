@@ -102,7 +102,7 @@ class Sample(Idable):
     receiptdate:datetime=None
     first_repositiondate:datetime=None
     initialamount:Amount=None
-    locationname:str=None
+    locationid:str=None
     locationpath:str=None
     orga:str = None
     parent:Idable=None 
@@ -136,7 +136,7 @@ class Sample(Idable):
          initialamount:Amount=None,
          kitid:str=None,
          locationpath:str=None,
-         locationname:str=None,
+         locationid:str=None,
          orga:str=None,
          parent:Idable=None,
          patient:Idable=None,
@@ -171,7 +171,7 @@ class Sample(Idable):
         self.initialamount = initialamount
         self.kitid = kitid
         self.locationpath = locationpath
-        self.locationname = locationname
+        self.locationid = locationid
         self.orga = orga
         self.parent = parent
         self.patient = patient
