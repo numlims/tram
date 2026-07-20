@@ -304,6 +304,10 @@ class Trial:
         self.name = name
         self.orgas = orgas
         self.users = users
+class Location:
+    def __init__(self, schema:str=None, path:str=None):
+        self.schema = schema
+        self.path = path
 
 class Rec:
     method:str = None
