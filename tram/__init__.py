@@ -286,13 +286,17 @@ class User:
       firstname:str=None,      
       lastlogin:datetime=None,
       lastname:str=None,    
-      username:str=None):
+      username:str=None,
+      entitystatus:str=None,
+      active_until:datetime=None):
         self.address = address
         self.divisional_admin = divisional_admin
         self.firstname = firstname        
         self.lastlogin = lastlogin
         self.lastname = lastname        
         self.username = username
+        self.entitystatus = entitystatus
+        self.active_until = active_until
 class Trial:
     def __init__(self,
       code:str=None,
@@ -306,6 +310,9 @@ class Trial:
         self.users = users
 class Location:
     def __init__(self, schema:str=None, path:str=None):
+        """
+         __init__ inits a Location with code and path.
+        """
         self.schema = schema
         self.path = path
 
