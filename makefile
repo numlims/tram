@@ -1,8 +1,8 @@
 # name
 name = tram
 
-docdir = ~/numlims.github.io/tram  # e.g. ~/mydoc.github.io/myprogram
-docmake = ~/numlims.github.io  # e.g. ~/mydoc.github.io
+docdir = C:/Users/aminn/Desktop/numlims.github.io/tram  # e.g. ~/mydoc.github.io/myprogram
+docmake = C:/Users/aminn/Desktop/numlims.github.io  # e.g. ~/mydoc.github.io
 
 # get the version from github tag
 # sort by version; get the last line; delete the v from the version tag cause python build seems to strip it as well
