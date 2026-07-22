@@ -736,7 +736,9 @@ __init__ inits a User with username, email and other values.
       firstname:str=None,      
       lastlogin:datetime=None,
       lastname:str=None,    
-      username:str=None):
+      username:str=None,
+      entitystatus:str=None,
+      active_until:datetime=None):
         ``.``
 ``
 
@@ -749,6 +751,8 @@ remember the arguments.
         self.lastlogin = lastlogin
         self.lastname = lastname        
         self.username = username
+        self.entitystatus = entitystatus
+        self.active_until = active_until
 ``
 
 

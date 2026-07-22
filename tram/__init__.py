@@ -286,13 +286,17 @@ class User:
       firstname:str=None,      
       lastlogin:datetime=None,
       lastname:str=None,    
-      username:str=None):
+      username:str=None,
+      entitystatus:str=None,
+      active_until:datetime=None):
         self.address = address
         self.divisional_admin = divisional_admin
         self.firstname = firstname        
         self.lastlogin = lastlogin
         self.lastname = lastname        
         self.username = username
+        self.entitystatus = entitystatus
+        self.active_until = active_until
 class Trial:
     def __init__(self,
       code:str=None,
