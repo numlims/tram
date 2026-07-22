@@ -306,6 +306,9 @@ class Trial:
         self.users = users
 class Location:
     def __init__(self, schema:str=None, path:str=None):
+        """
+         __init__ inits a Location with code and path.
+        """
         self.schema = schema
         self.path = path
 
